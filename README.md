@@ -1,6 +1,6 @@
 # OUILookup Tool
 
-### Integrange Pedro Jose Jeria Donaire RUN 21479995-2
+### Integrante Pedro Jose Jeria Donaire - Pedro.jose@alumnos.uv.cl
 
 Esta herramienta permite realizar consultas sobre direcciones MAC y mostrar información de la tabla ARP de dispositivos locales o de la red. Utiliza una API externa para consultar el fabricante de una dirección MAC específica.
 
