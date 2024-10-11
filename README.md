@@ -56,7 +56,3 @@ Puedes ejecutar el script con diferentes opciones de la línea de comandos.
 - **MAC Lookup API**: El programa utiliza la API de [maclookup.app](https://maclookup.app) para obtener la información del fabricante de una dirección MAC.
   
 - **Multicomandos**: Este script permite la ejecución de múltiples argumentos en la misma llamada. Por ejemplo, puedes consultar una dirección MAC y mostrar la tabla ARP al mismo tiempo.
-
-## Licencia
-
-Este proyecto está bajo la licencia MIT. Puedes modificar y distribuir el código a tu conveniencia.
