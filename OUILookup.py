@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# INTEGRANTE PEDRO JOSE JERIA DONAIRE RUN 21479995-2
+# PEDRO JERIA DONAIRE RUN 21479995-2
 import getopt
 import sys
 import requests
@@ -7,8 +7,6 @@ import json
 import time
 
 # Mostrar mensaje ayuda
-
-
 def mostrar_help():
     return """
     --mac: MAC a consultar. P.e. aa:bb:cc:00:00:00.
@@ -17,8 +15,6 @@ def mostrar_help():
     """
 
 # Mostrar mensaje de ARP
-
-
 def ejecutar_arp():
     return """
     IP/MAC/Vendor:
@@ -28,9 +24,7 @@ def ejecutar_arp():
     AC:F7:F3:aa:aa:aa / Xiaomi
     """
 
-# Realizar la peticin a la API y responder a la direccion MAC entregada
-
-
+# Realizar la peticion a la API y responder a la direccion MAC entregada
 def ejecutar_mac(address):
     # Comienzo de la marca de tiempo
     inicio = time.time()
@@ -51,9 +45,8 @@ Fabricante     : {company}
 Tiempo de respuesta {tiempo_respuesta}ms"""
     else:
         return f"""MAC address: {address}
-Frabicante     : Not Found
+Fabricante     : Not Found
 Tiempo de respuesta {tiempo_respuesta}ms"""
-
 
 # Parseo de los valores entregados como argumentos en CLI
 def procesar_argumentos(args):
@@ -61,26 +54,29 @@ def procesar_argumentos(args):
     opciones = "ham"
     opciones_largas = ["help", "arp", "mac="]
 
+    resultados = []  # Para almacenar los resultados de múltiples opciones
+
     try:
         # Se usa getopt para procesar los argumentos
         argumentos, valores = getopt.getopt(args, opciones, opciones_largas)
-        # Iterar hasta encontre los argumenos validos
+        # Iterar hasta encontrar los argumentos válidos
         for arg_actual, valor_actual in argumentos:
             if arg_actual in ("-h", "--help"):
-                return mostrar_help()
-            elif arg_actual in ("--arp"):
-                return ejecutar_arp()
-            elif arg_actual in ("--mac"):
-                return ejecutar_mac(valor_actual)
+                resultados.append(mostrar_help())
+            if arg_actual in ("--arp"):
+                resultados.append(ejecutar_arp())
+            if arg_actual in ("--mac"):
+                resultados.append(ejecutar_mac(valor_actual))
     except getopt.error as err:
         return f"Error: {str(err)}"
 
+    return "\n\n".join(resultados)  # Unir los resultados con doble salto de línea
 
-# Defincion de modulo main donde se procesan los argumentos
+# Definición de módulo main donde se procesan los argumentos
 def main():
     if len(sys.argv) <= 1:
         print(
-            """Use: python  OUILookup.py --mac <mac> | --arp | [--help]""" +
+            """Use: python OUILookup.py --mac <mac> | --arp | [--help]""" +
             mostrar_help())
         return
 
@@ -89,6 +85,6 @@ def main():
     if resultado:
         print(resultado)
 
-
 if __name__ == "__main__":
     main()
+
